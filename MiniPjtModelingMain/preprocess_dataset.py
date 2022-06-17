@@ -59,16 +59,20 @@ def __one_hot_encode_data_frame(df, encoding_feature):
 
 def __select_features(df):
     main_columns = ["winPlacePerc", "walkDistance", "killPlace", "boosts", "heals", "kills", "killStreaks", "longestKill", "rideDistance"]
+    #main_columns = ["winPlacePerc", "walkDistance", "boosts", "heals", "kills", "killStreaks", "longestKill", "rideDistance"]
     sub_columns = ["weaponsAcquired", "damageDealt", "headshotKills", "assists", "DBNOs"]
     #main_columns = ["winPlacePerc", "walkDistance", "boosts", "weaponsAcquired"]
     #kill_columns = ["kills", "damageDealt"]
     match_type_columns = df.columns[df.columns.str.contains("match_types")]
-    deleted_columns = df[["Id","groupId","matchId","matchType"]]
+    #deleted_columns = df[["Id","groupId","matchId","matchType"]]
+    #deleted_columns = df[["Id","groupId","matchId"]]
+    #deleted_columns = df[["Id","groupId","matchId","killPlace"]]
+    #deleted_columns = df[["Id","groupId","matchId","matchType","killPlace"]]
     #deleted_columns = df[["Id","groupId","matchId","matchType","killPoints","matchType","maxPlace","numGroups","rankPoints","revives","roadKills","swimDistance","teamKills","vehicleDestroys","winPoints","revives","weaponsAcquired"]]
     #deleted_columns = list(set(df.columns)-set(main_columns))
     #deleted_columns = list(set(df.columns)-set(main_columns)-set(sub_columns))
     #deleted_columns = list(set(df.columns)-set(main_columns)-set(match_type_columns))
-    #deleted_columns = list(set(df.columns)-set(main_columns)-set(sub_columns)-set(match_type_columns))
+    deleted_columns = list(set(df.columns)-set(main_columns)-set(sub_columns)-set(match_type_columns))
     return df.drop(columns=deleted_columns)
 
 
